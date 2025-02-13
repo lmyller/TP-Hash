@@ -53,14 +53,23 @@ export class Sha2SimulatorComponent {
 
     // Calcula o hash real usando crypto.subtle
     this.realHash = await this.calculateRealSHA2Hash(this.inputText);
-
+    
     // Aviso sobre a diferença entre as rodadas
     this.stepByStep.push({
       title: "Aviso Importante",
       content: [
         "As rodadas de 1 a 4 são uma versão simplificada usando apenas 8 bits para facilitar o entendimento.",
         "As rodadas de 5 a 8 seguem a implementação real com 32 bits.",
-        `O hash real gerado pelo algoritmo SHA-2 para o texto "${this.inputText}" é: ${this.realHash}`
+        `O hash real gerado pelo algoritmo SHA-2 para o texto "${this.inputText}" é: ${this.realHash}`,
+        `Atualização das variáveis intermediárias é feita da seguinte forma:`,
+        `novo h = g anterior`,
+        `novo g = f anterior`,
+        `novo f = e anterior`,
+        `novo e = (d anterior + valor temporario T1)`,
+        `novo d = c anterior`,
+        `novo c = b anterior`,
+        `novo b = a anterior`,
+        `novo a = (Valor temporário T1 + Valor Temporário T2)`
       ]
     });
 
