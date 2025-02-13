@@ -1,0 +1,95 @@
+[debug] [2025-02-13T12:07:59.186Z] ----------------------------------------------------------------------
+[debug] [2025-02-13T12:07:59.188Z] Command:       /usr/bin/node /usr/bin/firebase deploy --only hosting --force
+[debug] [2025-02-13T12:07:59.189Z] CLI Version:   13.30.0
+[debug] [2025-02-13T12:07:59.189Z] Platform:      linux
+[debug] [2025-02-13T12:07:59.189Z] Node Version:  v23.7.0
+[debug] [2025-02-13T12:07:59.189Z] Time:          Thu Feb 13 2025 09:07:59 GMT-0300 (Brasilia Standard Time)
+[debug] [2025-02-13T12:07:59.189Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-02-13T12:07:59.363Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-02-13T12:07:59.364Z] > authorizing via signed-in user (myller42@gmail.com)
+[debug] [2025-02-13T12:07:59.364Z] [iam] checking project hash-7a41f for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-02-13T12:07:59.365Z] Checked if tokens are valid: true, expires at: 1739451090842
+[debug] [2025-02-13T12:07:59.365Z] Checked if tokens are valid: true, expires at: 1739451090842
+[debug] [2025-02-13T12:07:59.366Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/hash-7a41f:testIamPermissions [none]
+[debug] [2025-02-13T12:07:59.366Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/hash-7a41f:testIamPermissions x-goog-quota-user=projects/hash-7a41f
+[debug] [2025-02-13T12:07:59.366Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hash-7a41f:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-02-13T12:08:00.357Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/hash-7a41f:testIamPermissions 200
+[debug] [2025-02-13T12:08:00.358Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hash-7a41f:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-02-13T12:08:00.359Z] Checked if tokens are valid: true, expires at: 1739451090842
+[debug] [2025-02-13T12:08:00.359Z] Checked if tokens are valid: true, expires at: 1739451090842
+[debug] [2025-02-13T12:08:00.360Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/hash-7a41f [none]
+[debug] [2025-02-13T12:08:00.959Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/hash-7a41f 200
+[debug] [2025-02-13T12:08:00.960Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/hash-7a41f {"projectId":"hash-7a41f","projectNumber":"440520549124","displayName":"Hash","name":"projects/hash-7a41f","resources":{"hostingSite":"hash-7a41f"},"state":"ACTIVE","etag":"1_5d9bea7d-4509-4d80-a5e2-d7fea3b19f33"}
+[info] 
+[info] === Deploying to 'hash-7a41f'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2025-02-13T12:08:00.966Z] Checked if tokens are valid: true, expires at: 1739451090842
+[debug] [2025-02-13T12:08:00.966Z] Checked if tokens are valid: true, expires at: 1739451090842
+[debug] [2025-02-13T12:08:00.966Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/hash-7a41f/versions [none]
+[debug] [2025-02-13T12:08:00.966Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/hash-7a41f/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2025-02-13T12:08:03.005Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/hash-7a41f/versions 200
+[debug] [2025-02-13T12:08:03.005Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/hash-7a41f/versions {"name":"projects/440520549124/sites/hash-7a41f/versions/7660e58208ba6a1f","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[hash-7a41f]: beginning deploy... 
+[info] i  hosting[hash-7a41f]: found 5 files in dist/hash-app/browser 
+[debug] [2025-02-13T12:08:03.030Z] [hosting] uploading with 200 concurrency
+[debug] [2025-02-13T12:08:03.088Z] Checked if tokens are valid: true, expires at: 1739451090842
+[debug] [2025-02-13T12:08:03.088Z] Checked if tokens are valid: true, expires at: 1739451090842
+[debug] [2025-02-13T12:08:03.089Z] [hosting] hash cache [ZGlzdC9oYXNoLWFwcC9icm93c2Vy] stored for 5 files
+[debug] [2025-02-13T12:08:03.089Z] [hosting][hash queue][FINAL] {"max":51,"min":7,"avg":17.6,"active":0,"complete":5,"success":5,"errored":0,"retried":0,"total":5,"elapsed":55}
+[debug] [2025-02-13T12:08:03.089Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/440520549124/sites/hash-7a41f/versions/7660e58208ba6a1f:populateFiles [none]
+[debug] [2025-02-13T12:08:03.090Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/440520549124/sites/hash-7a41f/versions/7660e58208ba6a1f:populateFiles {"files":{"/styles-J2WWWVQD.css":"1854208192042a7185e705deb46c723a118d6e2e3baf8d4c21097afc62a4b0ee","/index.html":"5f4f254cd5f61575fd9cca088ed5c8d5a0c4c3403859a604ac2fcfa4212da2b3","/polyfills-FFHMD2TL.js":"7a5d7bbd0770f8f0e977fbd3efac27b556af8e460883feffc3d0f59dd075b877","/favicon.ico":"2ccfb0a1407a2b1561918a66656e80bf3e0eacaa688e8d543fc3ac8af830ad90","/main-HFTW2XDQ.js":"862699fd3bbe096cd5375450d638ab25bfdaaa36f35170ec8983c057d3ffd44d"}}
+[debug] [2025-02-13T12:08:03.418Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/440520549124/sites/hash-7a41f/versions/7660e58208ba6a1f:populateFiles 200
+[debug] [2025-02-13T12:08:03.418Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/440520549124/sites/hash-7a41f/versions/7660e58208ba6a1f:populateFiles {"uploadRequiredHashes":["862699fd3bbe096cd5375450d638ab25bfdaaa36f35170ec8983c057d3ffd44d","5f4f254cd5f61575fd9cca088ed5c8d5a0c4c3403859a604ac2fcfa4212da2b3"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/hash-7a41f/versions/7660e58208ba6a1f/files"}
+[debug] [2025-02-13T12:08:03.419Z] Checked if tokens are valid: true, expires at: 1739451090842
+[debug] [2025-02-13T12:08:03.420Z] Checked if tokens are valid: true, expires at: 1739451090842
+[debug] [2025-02-13T12:08:03.420Z] Checked if tokens are valid: true, expires at: 1739451090842
+[debug] [2025-02-13T12:08:03.420Z] Checked if tokens are valid: true, expires at: 1739451090842
+[debug] [2025-02-13T12:08:03.421Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/hash-7a41f/versions/7660e58208ba6a1f/files/862699fd3bbe096cd5375450d638ab25bfdaaa36f35170ec8983c057d3ffd44d [none]
+[debug] [2025-02-13T12:08:03.421Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/hash-7a41f/versions/7660e58208ba6a1f/files/862699fd3bbe096cd5375450d638ab25bfdaaa36f35170ec8983c057d3ffd44d [stream]
+[debug] [2025-02-13T12:08:03.424Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/hash-7a41f/versions/7660e58208ba6a1f/files/5f4f254cd5f61575fd9cca088ed5c8d5a0c4c3403859a604ac2fcfa4212da2b3 [none]
+[debug] [2025-02-13T12:08:03.424Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/hash-7a41f/versions/7660e58208ba6a1f/files/5f4f254cd5f61575fd9cca088ed5c8d5a0c4c3403859a604ac2fcfa4212da2b3 [stream]
+[debug] [2025-02-13T12:08:03.426Z] [hosting][populate queue][FINAL] {"max":334,"min":334,"avg":334,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":339}
+[debug] [2025-02-13T12:08:03.426Z] [hosting] uploads queued: 2
+[debug] [2025-02-13T12:08:05.961Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/hash-7a41f/versions/7660e58208ba6a1f/files/862699fd3bbe096cd5375450d638ab25bfdaaa36f35170ec8983c057d3ffd44d 200
+[debug] [2025-02-13T12:08:05.961Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/hash-7a41f/versions/7660e58208ba6a1f/files/862699fd3bbe096cd5375450d638ab25bfdaaa36f35170ec8983c057d3ffd44d [stream]
+[debug] [2025-02-13T12:08:05.962Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/hash-7a41f/versions/7660e58208ba6a1f/files/5f4f254cd5f61575fd9cca088ed5c8d5a0c4c3403859a604ac2fcfa4212da2b3 200
+[debug] [2025-02-13T12:08:05.962Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/hash-7a41f/versions/7660e58208ba6a1f/files/5f4f254cd5f61575fd9cca088ed5c8d5a0c4c3403859a604ac2fcfa4212da2b3 [stream]
+[debug] [2025-02-13T12:08:05.963Z] [hosting][upload queue][FINAL] {"max":2543,"min":2543,"avg":2543,"active":0,"complete":2,"success":2,"errored":0,"retried":0,"total":2,"elapsed":2545}
+[info] ✔  hosting[hash-7a41f]: file upload complete 
+[debug] [2025-02-13T12:08:05.965Z] [hosting] deploy completed after 2955ms
+[debug] [2025-02-13T12:08:05.965Z] [
+  {
+    "config": {
+      "public": "dist/hash-app/browser",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "hash-7a41f"
+    },
+    "version": "projects/440520549124/sites/hash-7a41f/versions/7660e58208ba6a1f"
+  }
+]
+[info] i  hosting[hash-7a41f]: finalizing version... 
+[debug] [2025-02-13T12:08:05.969Z] Checked if tokens are valid: true, expires at: 1739451090842
+[debug] [2025-02-13T12:08:05.969Z] Checked if tokens are valid: true, expires at: 1739451090842
+[debug] [2025-02-13T12:08:05.969Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/hash-7a41f/versions/7660e58208ba6a1f updateMask=status%2Cconfig
+[debug] [2025-02-13T12:08:05.969Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/hash-7a41f/versions/7660e58208ba6a1f {"status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]}}
+[debug] [2025-02-13T12:08:06.282Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/hash-7a41f/versions/7660e58208ba6a1f 200
+[debug] [2025-02-13T12:08:06.283Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/hash-7a41f/versions/7660e58208ba6a1f {"name":"projects/440520549124/sites/hash-7a41f/versions/7660e58208ba6a1f","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2025-02-13T12:08:02.037660Z","createUser":{"email":"myller42@gmail.com"},"finalizeTime":"2025-02-13T12:08:06.102084Z","finalizeUser":{"email":"myller42@gmail.com"}}
+[debug] [2025-02-13T12:08:06.283Z] [hosting] finalized version for hash-7a41f:[object Object]
+[info] ✔  hosting[hash-7a41f]: version finalized 
+[info] i  hosting[hash-7a41f]: releasing new version... 
+[debug] [2025-02-13T12:08:06.284Z] Checked if tokens are valid: true, expires at: 1739451090842
+[debug] [2025-02-13T12:08:06.284Z] Checked if tokens are valid: true, expires at: 1739451090842
+[debug] [2025-02-13T12:08:06.284Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/hash-7a41f/channels/live/releases versionName=projects%2F440520549124%2Fsites%2Fhash-7a41f%2Fversions%2F7660e58208ba6a1f
+[debug] [2025-02-13T12:08:06.284Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/hash-7a41f/channels/live/releases {}

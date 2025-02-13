@@ -32,6 +32,21 @@
 
   <div *ngFor="let tt of truthTables" class="function-card">
     <h3>Operação: {{ tt.operation }}</h3>
+    <p>
+      <strong>Explicação:</strong>
+      <span *ngIf="tt.operation === 'AND'">
+        A operação AND retorna 1 apenas quando ambos os valores de entrada (A e B) são 1. Caso contrário, o resultado é 0.
+      </span>
+      <span *ngIf="tt.operation === 'OR'">
+        A operação OR retorna 1 se pelo menos um dos valores de entrada (A ou B) for 1. O resultado é 0 apenas quando ambos os valores são 0.
+      </span>
+      <span *ngIf="tt.operation === 'XOR'">
+        A operação XOR (OU Exclusivo) retorna 1 quando os valores de entrada são diferentes (um é 0 e o outro é 1). Se ambos forem iguais, o resultado é 0.
+      </span>
+      <span *ngIf="tt.operation === 'NOT'">
+        A operação NOT inverte o valor de entrada. Se A for 1, o resultado será 0, e vice-versa.
+      </span>
+    </p>
     <table>
       <tr>
         <th>A</th>
