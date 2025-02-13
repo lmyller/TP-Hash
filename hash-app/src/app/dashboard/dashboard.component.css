@@ -1,0 +1,190 @@
+/* Estilos globais para dark mode */
+body {
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+  overflow: hidden; /* Evita rolagem horizontal */
+}
+
+.dashboard-nav {
+  width: 250px;
+  background-color: #1e1e1e;
+  transition: transform 0.3s ease;
+  position: fixed; /* Fixa a barra lateral */
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000; /* Garante que a barra lateral fique acima do conteúdo */
+}
+
+.dashboard-nav.collapsed {
+  transform: translateX(-250px); /* Esconde a barra lateral */
+}
+
+.dashboard-app {
+  flex-grow: 1;
+  margin-left: 250px; /* Espaço para a barra lateral */
+  transition: margin-left 0.3s ease;
+}
+
+.dashboard-nav.collapsed + .dashboard-app {
+  margin-left: 0; /* Remove o espaço quando a barra lateral está escondida */
+}
+
+.dashboard-nav header {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #3700b3;
+}
+
+/* Estilos para os botões */
+.dashboard-nav-item.btn {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  margin: 5px 0;
+  background-color: #3700b3; /* Cor de fundo do botão */
+  color: #e0e0e0; /* Cor do texto */
+  border-radius: 5px; /* Bordas arredondadas */
+  text-decoration: none; /* Remove sublinhado do link */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Transições suaves */
+}
+
+.dashboard-nav-item.btn:hover {
+  background-color: #5600e8; /* Cor de fundo ao passar o mouse */
+  transform: translateX(5px); /* Efeito de deslocamento para a direita */
+}
+
+.dashboard-nav-item.btn:active {
+  background-color: #1a007a; /* Cor de fundo ao clicar */
+  transform: translateX(0); /* Remove o deslocamento ao clicar */
+}
+
+.dashboard-nav-item.btn fa-icon {
+  margin-right: 10px; /* Espaçamento entre o ícone e o texto */
+}
+
+.brand-logo {
+  color: #bb86fc;
+  font-size: 1.5em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.brand-logo fa-icon {
+  margin-right: 10px;
+}
+
+.menu-toggle {
+  color: #e0e0e0;
+  font-size: 1.2em;
+  margin-right: 10px;
+}
+
+.dashboard-nav-list {
+  padding-top: 20px;
+}
+
+.dashboard-nav-item {
+  display: flex;
+  align-items: center;
+  color: #e0e0e0;
+  text-decoration: none;
+  padding: 10px 0;
+  transition: 0.3s;
+}
+
+.dashboard-nav-item:hover {
+  color: #03dac6;
+}
+
+.dashboard-nav-item fa-icon {
+  margin-right: 10px;
+}
+
+.nav-item-divider {
+  height: 1px;
+  background-color: #3700b3;
+  margin: 10px 0;
+}
+
+/* Estilos para a área de conteúdo principal */
+.dashboard-app {
+  flex-grow: 1;
+  background-color: #121212;
+  padding: 20px;
+}
+
+.dashboard-content {
+  background-color: #1e1e1e;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .dashboard-nav {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    height: 100vh;
+    z-index: 1000;
+  }
+
+  .dashboard-nav.mobile-show {
+    left: 0;
+  }
+
+  .dashboard-app {
+    width: 100%;
+  }
+}
+
+/* Estilos para elementos interativos */
+button,
+input[type="submit"] {
+  background-color: #3700b3;
+  color: #e0e0e0;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover,
+input[type="submit"]:hover {
+  background-color: #5600e8;
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+  background-color: #2c2c2c;
+  color: #e0e0e0;
+  border: 1px solid #3700b3;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+/* Estilização da barra de rolagem para navegadores WebKit */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #3700b3;
+  border-radius: 6px;
+  border: 3px solid #1e1e1e;
+}

@@ -1,0 +1,15 @@
+<div class="container">
+  <h2>Simulador SHA-2</h2>
+  <input type="text" [(ngModel)]="inputText" placeholder="Insira o texto aqui" />
+  <button (click)="processInput()">Simular SHA-2</button>
+
+  <div class="results">
+    <h3>Passo a Passo:</h3>
+    <div *ngFor="let step of stepByStep" class="operation-card">
+      <h4>{{ step.title }}</h4>
+      <div>
+        <p *ngFor="let line of step.content">{{ line }}</p>
+      </div>
+    </div>
+  </div>
+</div>

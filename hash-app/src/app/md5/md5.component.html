@@ -1,0 +1,446 @@
+<div class="hash-container">
+  <div class="top-right-button" style="position: fixed;">
+    <button (click)="navigateToTextInput()">
+      <fa-icon [icon]="faArrowRight"></fa-icon>
+      <span>Gerar hash MD5</span>
+    </button>
+  </div>
+  <h1>Explicação Detalhada do Algoritmo MD5</h1>
+  <p>
+    O MD5 (<strong>Message-Digest Algorithm 5</strong>) é um algoritmo de hash criptográfico amplamente utilizado para
+    gerar um valor de hash de 128 bits (16 bytes) a partir de uma entrada de dados de tamanho variável. Ele foi
+    desenvolvido por Ronald Rivest em 1991 como uma evolução do MD4. O MD5 é comumente usado para verificar a
+    integridade de arquivos e dados, mas devido a vulnerabilidades conhecidas, não é mais considerado seguro para uso em
+    aplicações criptográficas que exigem resistência a colisões.
+  </p>
+
+  <h2>Funcionamento do MD5</h2>
+  <p>
+    O algoritmo MD5 processa a entrada em blocos de 512 bits (64 bytes) e produz um hash de 128 bits. O processo pode
+    ser dividido em várias etapas:
+  </p>
+
+  <h3>1. Preparação da Mensagem (Padding)</h3>
+  <p>
+    A mensagem de entrada é primeiro ajustada para que seu tamanho em bits seja congruente a 448 módulo 512. Isso
+    significa que o tamanho da mensagem após o padding deve ser 64 bits menor que um múltiplo de 512.
+  </p>
+  <ul>
+    <li>O padding é feito adicionando um bit <code>1</code> seguido de bits <code>0</code> até que o tamanho desejado
+      seja alcançado.</li>
+    <li>Após o padding, o comprimento original da mensagem (em bits) é anexado como um valor de 64 bits. Isso garante
+      que a mensagem tenha um comprimento total que seja um múltiplo exato de 512 bits.</li>
+  </ul>
+
+  <h3>2. Inicialização do Buffer</h3>
+  <p>
+    O MD5 usa um buffer de 128 bits, dividido em quatro palavras de 32 bits (A, B, C, D). Essas palavras são
+    inicializadas com valores fixos:
+  </p>
+  <pre><code>
+  A = 0x67452301
+  B = 0xEFCDAB89
+  C = 0x98BADCFE
+  D = 0x10325476
+          </code></pre>
+
+  <h3>3. Processamento em Blocos de 512 bits</h3>
+  <p>
+    A mensagem é dividida em blocos de 512 bits. Para cada bloco, o algoritmo realiza 64 rodadas de transformações,
+    divididas em quatro rodadas principais de 16 etapas cada.
+  </p>
+  <ul>
+    <li>Cada rodada usa uma função não linear diferente:
+      <ul>
+        <li><strong>Rodada 1:</strong> Função F(B, C, D) = (B AND C) OR (NOT B AND D)</li>
+        <li><strong>Rodada 2:</strong> Função G(B, C, D) = (B AND D) OR (C AND NOT D)</li>
+        <li><strong>Rodada 3:</strong> Função H(B, C, D) = B XOR C XOR D</li>
+        <li><strong>Rodada 4:</strong> Função I(B, C, D) = C XOR (B OR NOT D)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h3>Fórmula de Processamento Completa</h3>
+  <p>
+    Em cada etapa de uma rodada, o valor de uma das palavras do buffer (A, B, C, D) é atualizado usando a seguinte
+    fórmula:
+  </p>
+  <div class="formula">
+    <code>
+                  A = B + ((A + F(B, C, D) + M[k] + T[i]) <<< s)
+              </code>
+  </div>
+  <p>
+    Onde:
+  </p>
+  <ul>
+    <li><code>A, B, C, D</code>: Palavras do buffer de 32 bits.</li>
+    <li><code>F(B, C, D)</code>: Função não linear da rodada (F, G, H ou I).</li>
+    <li><code>M[k]</code>: Bloco de 32 bits da mensagem (k é o índice do bloco).</li>
+    <li><code>T[i]</code>: Constante pré-definida para a etapa i (64 constantes são usadas no total).</li>
+    <li><code><<< s</code>: Rotação à esquerda de <code>s</code> bits.</li>
+  </ul>
+
+  <h3>Tabela de Constantes T[i] e s[i]</h3>
+  <p>
+    As constantes <code>T[i]</code> são valores derivados da função seno, e os valores de <code>s[i]</code> definem a
+    quantidade de rotações à esquerda em cada etapa. Abaixo está a tabela completa:
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>i</th>
+        <th>T[i] (Hexadecimal)</th>
+        <th>s[i] (Rotação)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>0xD76AA478</td>
+        <td>7</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>0xE8C7B756</td>
+        <td>12</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>0x242070DB</td>
+        <td>17</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>0xC1BDCEEE</td>
+        <td>22</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>0xF57C0FAF</td>
+        <td>7</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>0x4787C62A</td>
+        <td>12</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>0xA8304613</td>
+        <td>17</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>0xFD469501</td>
+        <td>22</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>0x698098D8</td>
+        <td>7</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>0x8B44F7AF</td>
+        <td>12</td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td>0xFFFF5BB1</td>
+        <td>17</td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td>0x895CD7BE</td>
+        <td>22</td>
+      </tr>
+      <tr>
+        <td>13</td>
+        <td>0x6B901122</td>
+        <td>7</td>
+      </tr>
+      <tr>
+        <td>14</td>
+        <td>0xFD987193</td>
+        <td>12</td>
+      </tr>
+      <tr>
+        <td>15</td>
+        <td>0xA679438E</td>
+        <td>17</td>
+      </tr>
+      <tr>
+        <td>16</td>
+        <td>0x49B40821</td>
+        <td>22</td>
+      </tr>
+      <tr>
+        <td>17</td>
+        <td>0xF61E2562</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td>18</td>
+        <td>0xC040B340</td>
+        <td>9</td>
+      </tr>
+      <tr>
+        <td>19</td>
+        <td>0x265E5A51</td>
+        <td>14</td>
+      </tr>
+      <tr>
+        <td>20</td>
+        <td>0xE9B6C7AA</td>
+        <td>20</td>
+      </tr>
+      <tr>
+        <td>21</td>
+        <td>0xD62F105D</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td>22</td>
+        <td>0x02441453</td>
+        <td>9</td>
+      </tr>
+      <tr>
+        <td>23</td>
+        <td>0xD8A1E681</td>
+        <td>14</td>
+      </tr>
+      <tr>
+        <td>24</td>
+        <td>0xE7D3FBC8</td>
+        <td>20</td>
+      </tr>
+      <tr>
+        <td>25</td>
+        <td>0x21E1CDE6</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td>26</td>
+        <td>0xC33707D6</td>
+        <td>9</td>
+      </tr>
+      <tr>
+        <td>27</td>
+        <td>0xF4D50D87</td>
+        <td>14</td>
+      </tr>
+      <tr>
+        <td>28</td>
+        <td>0x455A14ED</td>
+        <td>20</td>
+      </tr>
+      <tr>
+        <td>29</td>
+        <td>0xA9E3E905</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td>30</td>
+        <td>0xFCEFA3F8</td>
+        <td>9</td>
+      </tr>
+      <tr>
+        <td>31</td>
+        <td>0x676F02D9</td>
+        <td>14</td>
+      </tr>
+      <tr>
+        <td>32</td>
+        <td>0x8D2A4C8A</td>
+        <td>20</td>
+      </tr>
+      <tr>
+        <td>33</td>
+        <td>0xFFFA3942</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>34</td>
+        <td>0x8771F681</td>
+        <td>11</td>
+      </tr>
+      <tr>
+        <td>35</td>
+        <td>0x6D9D6122</td>
+        <td>16</td>
+      </tr>
+      <tr>
+        <td>36</td>
+        <td>0xFDE5380C</td>
+        <td>23</td>
+      </tr>
+      <tr>
+        <td>37</td>
+        <td>0xA4BEEA44</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>38</td>
+        <td>0x4BDECFA9</td>
+        <td>11</td>
+      </tr>
+      <tr>
+        <td>39</td>
+        <td>0xF6BB4B60</td>
+        <td>16</td>
+      </tr>
+      <tr>
+        <td>40</td>
+        <td>0xBEBFBC70</td>
+        <td>23</td>
+      </tr>
+      <tr>
+        <td>41</td>
+        <td>0x289B7EC6</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>42</td>
+        <td>0xEAA127FA</td>
+        <td>11</td>
+      </tr>
+      <tr>
+        <td>43</td>
+        <td>0xD4EF3085</td>
+        <td>16</td>
+      </tr>
+      <tr>
+        <td>44</td>
+        <td>0x04881D05</td>
+        <td>23</td>
+      </tr>
+      <tr>
+        <td>45</td>
+        <td>0xD9D4D039</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>46</td>
+        <td>0xE6DB99E5</td>
+        <td>11</td>
+      </tr>
+      <tr>
+        <td>47</td>
+        <td>0x1FA27CF8</td>
+        <td>16</td>
+      </tr>
+      <tr>
+        <td>48</td>
+        <td>0xC4AC5665</td>
+        <td>23</td>
+      </tr>
+      <tr>
+        <td>49</td>
+        <td>0xF4292244</td>
+        <td>6</td>
+      </tr>
+      <tr>
+        <td>50</td>
+        <td>0x432AFF97</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>51</td>
+        <td>0xAB9423A7</td>
+        <td>15</td>
+      </tr>
+      <tr>
+        <td>52</td>
+        <td>0xFC93A039</td>
+        <td>21</td>
+      </tr>
+      <tr>
+        <td>53</td>
+        <td>0x655B59C3</td>
+        <td>6</td>
+      </tr>
+      <tr>
+        <td>54</td>
+        <td>0x8F0CCC92</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>55</td>
+        <td>0xFFEFF47D</td>
+        <td>15</td>
+      </tr>
+      <tr>
+        <td>56</td>
+        <td>0x85845DD1</td>
+        <td>21</td>
+      </tr>
+      <tr>
+        <td>57</td>
+        <td>0x6FA87E4F</td>
+        <td>6</td>
+      </tr>
+      <tr>
+        <td>58</td>
+        <td>0xFE2CE6E0</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>59</td>
+        <td>0xA3014314</td>
+        <td>15</td>
+      </tr>
+      <tr>
+        <td>60</td>
+        <td>0x4E0811A1</td>
+        <td>21</td>
+      </tr>
+      <tr>
+        <td>61</td>
+        <td>0xF7537E82</td>
+        <td>6</td>
+      </tr>
+      <tr>
+        <td>62</td>
+        <td>0xBD3AF235</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>63</td>
+        <td>0x2AD7D2BB</td>
+        <td>15</td>
+      </tr>
+      <tr>
+        <td>64</td>
+        <td>0xEB86D391</td>
+        <td>21</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>4. Atualização do Buffer</h3>
+  <p>
+    Após processar todos os blocos de 512 bits, o buffer final (A, B, C, D) é somado com as variáveis iniciais (A final + A inicial e assim repete para B, C e D) 
+    contém o hash MD5 de 128 bits. Esse valor é concatenado e convertido em uma representação hexadecimal de 32 caracteres.
+  </p>
+
+  <h2>Vulnerabilidades do MD5</h2>
+  <p>
+    O MD5 foi projetado para ser rápido e eficiente, mas ao longo dos anos, várias vulnerabilidades foram descobertas:
+  </p>
+  <ol>
+    <li><strong>Colisões:</strong> É possível encontrar duas entradas diferentes que produzem o mesmo hash MD5. Isso
+      torna o MD5 inadequado para aplicações que exigem resistência a colisões, como assinaturas digitais.</li>
+    <li><strong>Ataques de preimagem:</strong> Embora mais difíceis, existem métodos para encontrar uma entrada que gere
+      um hash específico.</li>
+    <li><strong>Ataques de extensão de mensagem:</strong> Dado um hash MD5 de uma mensagem, é possível gerar um hash
+      válido para uma mensagem estendida sem conhecer a mensagem original.</li>
+  </ol>
+
+  <h2>Conclusão</h2>
+  <p>
+    O MD5 foi amplamente utilizado no passado, mas hoje é considerado inseguro para aplicações criptográficas.
+    Algoritmos mais modernos, como SHA-256 ou SHA-3, são recomendados para garantir segurança e resistência a colisões.
+    No entanto, o MD5 ainda pode ser útil em contextos não críticos, como verificações simples de integridade de dados.
+  </p>
+</div>

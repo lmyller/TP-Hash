@@ -1,0 +1,48 @@
+<div class="boolean-functions-container">
+  <!-- Explicação geral das funções booleanas -->
+  <h2>Funções Booleanas Usadas no MD5 e SHA-2</h2>
+  <p>
+    Os algoritmos MD5 e SHA-2 utilizam funções booleanas para processar os dados. Abaixo estão as funções booleanas usadas em cada algoritmo, juntamente com suas fórmulas e descrições.
+  </p>
+
+  <!-- Funções Booleanas do MD5 -->
+  <h2>Funções Booleanas do MD5</h2>
+  <div *ngFor="let func of md5Functions" class="function-card">
+    <h3>Função {{ func.name }}</h3>
+    <p><strong>Fórmula:</strong> {{ func.formula }}</p>
+    <p><strong>Descrição:</strong> {{ func.description }}</p>
+  </div>
+
+  <!-- Funções Booleanas do SHA-2 -->
+  <h2>Funções Booleanas do SHA-2</h2>
+  <div *ngFor="let func of sha2Functions" class="function-card">
+    <h3>Função {{ func.name }}</h3>
+    <p><strong>Fórmula:</strong> {{ func.formula }}</p>
+    <p><strong>Descrição:</strong> {{ func.description }}</p>
+    <p *ngIf="func.note">
+      <strong>Nota:</strong> {{ func.note }}
+    </p>
+  </div>
+
+  <!-- Tabelas-Verdade -->
+  <h2>Tabela-Verdade das Operações Lógicas</h2>
+  <p>
+    As tabelas-verdade abaixo mostram os resultados das operações lógicas fundamentais (AND, OR, XOR, NOT). Cada operação é aplicada aos valores de entrada A e B (quando aplicável) para produzir o resultado.
+  </p>
+
+  <div *ngFor="let tt of truthTables" class="function-card">
+    <h3>Operação: {{ tt.operation }}</h3>
+    <table>
+      <tr>
+        <th>A</th>
+        <th *ngIf="tt.operation !== 'NOT'">B</th>
+        <th>Resultado</th>
+      </tr>
+      <tr *ngFor="let row of tt.table">
+        <td>{{ row.A }}</td>
+        <td *ngIf="tt.operation !== 'NOT'">{{ row.B ?? '-' }}</td>
+        <td>{{ row.result }}</td>
+      </tr>
+    </table>
+  </div>
+</div>

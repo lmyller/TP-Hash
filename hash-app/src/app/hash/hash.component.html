@@ -1,0 +1,45 @@
+<div class="hash-container">
+    <h1>O que é Hash?</h1>
+    <p>O conceito de hash é fundamental na computação e na segurança da informação, sendo amplamente utilizado para transformar dados de qualquer tamanho em um valor fixo, conhecido como código hash ou digest. Esse valor é gerado por uma função hash, que aplica cálculos matemáticos complexos para produzir uma representação compacta e, idealmente, única da entrada.</p>
+    <p>As funções hash são essenciais em diversas aplicações, como armazenamento seguro de senhas, assinaturas digitais, verificação de integridade de arquivos e estruturas de dados eficientes. Sua principal característica é a irreversibilidade, ou seja, não é possível reconstruir a entrada original a partir do hash gerado, tornando-as ferramentas valiosas para segurança e autenticação.</p>
+    <p>Além disso, um bom algoritmo de hash deve garantir que pequenas alterações na entrada resultem em um hash completamente diferente, evitar colisões (casos em que duas entradas diferentes geram o mesmo hash) e ser computacionalmente eficiente. A seguir, exploraremos seu funcionamento, os principais algoritmos disponíveis e suas aplicações práticas.</p>
+    
+    <h2>Como Funciona uma Função Hash?</h2>
+    <p>Uma função hash recebe um conjunto de dados de tamanho arbitrário e produz um valor fixo. Esse valor é normalmente representado em formato hexadecimal e pode ser armazenado ou utilizado para comparações.</p>
+    <p>Propriedades desejáveis de uma boa função hash incluem:</p>
+    <ul>
+        <li><strong>Determinismo:</strong> A mesma entrada sempre produzirá a mesma saída.</li>
+        <li><strong>Rapidez:</strong> A função hash deve ser eficiente, gerando o hash rapidamente.</li>
+        <li><strong>Distribuição uniforme:</strong> Os hashes gerados devem estar distribuídos de forma homogênea, evitando colisões.</li>
+        <li><strong>Irreversibilidade:</strong> Deve ser difícil obter a entrada original a partir do hash.</li>
+        <li><strong>Sensibilidade a mudanças:</strong> Pequenas alterações na entrada devem gerar um hash completamente diferente.</li>
+    </ul>
+    
+    <h2>Principais Algoritmos de Hash</h2>
+    <p>Existem diversos algoritmos de hash, cada um com suas vantagens e desvantagens:</p>
+    <ul>
+        <li><strong>MD5:</strong> Criado em 1991, gera um hash de 128 bits. Rápido e eficiente, mas vulnerável a ataques de colisão, tornando-o inadequado para segurança.</li>
+        <li><strong>SHA-1:</strong> Desenvolvido pela NSA, produz um hash de 160 bits. Já foi amplamente utilizado, mas ataques demonstraram sua fragilidade.</li>
+        <li><strong>SHA-256:</strong> Parte da família SHA-2, gera um hash de 256 bits. Oferece alta segurança e é usado em blockchain e certificados digitais.</li>
+        <li><strong>SHA-512:</strong> Variante do SHA-2, gera um hash de 512 bits, oferecendo ainda mais resistência a ataques.</li>
+        <li><strong>SHA-3:</strong> Alternativa ao SHA-2, baseada no algoritmo Keccak. Traz um design diferente e alta resistência a ataques criptográficos.</li>
+        <li><strong>Bcrypt:</strong> Desenvolvido para proteger senhas, incorpora um fator de custo que aumenta o tempo de processamento, dificultando ataques de força bruta.</li>
+        <li><strong>Argon2:</strong> Considerado o melhor algoritmo para hashing de senhas, projetado para ser resistente a ataques baseados em hardware especializado.</li>
+    </ul>
+    
+    <h2>Aplicações do Hash</h2>
+    <ul>
+        <li><strong>Estruturas de Dados (Tabela Hash):</strong> Utilizadas para buscas rápidas e armazenamento eficiente, empregando funções hash para calcular a posição de um elemento em uma tabela.</li>
+        <li><strong>Criptografia e Segurança:</strong> Funções hash como SHA-256 e MD5 são utilizadas para armazenar senhas de forma segura, impedindo a recuperação direta da senha original.</li>
+        <li><strong>Verificação de Integridade:</strong> Quando um arquivo é transferido, um hash pode ser gerado para garantir que ele não foi alterado durante o processo.</li>
+        <li><strong>Assinaturas Digitais:</strong> Utilizadas para garantir a autenticidade de documentos eletrônicos e transações.</li>
+        <li><strong>Blockchain:</strong> No Bitcoin e em outras criptomoedas, o hash é fundamental para garantir a integridade e imutabilidade das transações registradas na blockchain.</li>
+    </ul>
+    
+    <h2>Colisões e Funções Hash Seguras</h2>
+    <p>Uma colisão ocorre quando duas entradas diferentes geram o mesmo hash. Funções hash criptográficas, como SHA-256, são projetadas para minimizar essas colisões, tornando a descoberta de duas entradas com o mesmo hash extremamente difícil.</p>
+    <p>Funções como MD5 e SHA-1, que já demonstraram vulnerabilidades, são substituídas por versões mais seguras, como SHA-256 e SHA-3. Essas novas funções possuem maior resistência a ataques de força bruta e colisões deliberadas.</p>
+    
+    <h2>Conclusão</h2>
+    <p>O conceito de hash é essencial em diversas áreas da computação, garantindo eficiência, integridade e segurança em diferentes sistemas computacionais. Diferentes algoritmos oferecem níveis variados de segurança, sendo fundamental escolher a opção mais adequada para cada aplicação específica.</p>
+</div>

@@ -1,0 +1,369 @@
+<div class="hash-container">
+  <div class="top-right-button" style="position: fixed;">
+    <button (click)="navigateToTextInput()">
+      <fa-icon [icon]="faArrowRight"></fa-icon>
+      <span>Gerar hash SHA-2</span>
+    </button>
+  </div>
+  <h1>Explicação Detalhada do Algoritmo SHA-2 (SHA-256)</h1>
+  <p>
+    O SHA-2 (<strong>Secure Hash Algorithm 2</strong>) é uma família de funções hash criptográficas projetadas pela NSA
+    (Agência de Segurança Nacional dos EUA). Ele inclui variantes como SHA-224, SHA-256, SHA-384, SHA-512, entre outras.
+    O SHA-256, que gera um hash de 256 bits (32 bytes), é amplamente utilizado em aplicações como Bitcoin, certificados
+    digitais e integridade de dados.
+  </p>
+
+  <h2>Funcionamento do SHA-256</h2>
+  <p>
+    O SHA-256 processa a entrada em blocos de 512 bits (64 bytes) e produz um hash de 256 bits. O processo pode ser
+    dividido em várias etapas:
+  </p>
+
+  <h3>1. Preparação da Mensagem (Padding)</h3>
+  <p>
+    A mensagem de entrada é ajustada para que seu tamanho em bits seja congruente a 448 módulo 512. Isso significa que o
+    tamanho da mensagem após o padding deve ser 64 bits menor que um múltiplo de 512.
+  </p>
+  <ul>
+    <li>O padding é feito adicionando um bit <code>1</code> seguido de bits <code>0</code> até que o tamanho desejado
+      seja alcançado.</li>
+    <li>Após o padding, o comprimento original da mensagem (em bits) é anexado como um valor de 64 bits. Isso garante
+      que a mensagem tenha um comprimento total que seja um múltiplo exato de 512 bits.</li>
+  </ul>
+
+  <h3>2. Inicialização do Buffer</h3>
+  <p>
+    O SHA-256 usa um buffer de 256 bits, dividido em oito palavras de 32 bits (A, B, C, D, E, F, G, H). Essas palavras
+    são inicializadas com valores fixos:
+  </p>
+  <pre><code>
+A = 0x6A09E667
+B = 0xBB67AE85
+C = 0x3C6EF372
+D = 0xA54FF53A
+E = 0x510E527F
+F = 0x9B05688C
+G = 0x1F83D9AB
+H = 0x5BE0CD19
+  </code></pre>
+
+  <h3>3. Processamento em Blocos de 512 bits</h3>
+  <p>
+    A mensagem é dividida em blocos de 512 bits. Para cada bloco, o algoritmo realiza 64 rodadas de transformações.
+  </p>
+
+  <h3>Fórmulas de Processamento</h3>
+  <p>
+    O SHA-256 utiliza seis funções lógicas e duas constantes principais para processar cada bloco:
+  </p>
+  <div class="formula">
+    <strong>Funções de Compressão:</strong><br>
+    <code>Ch(E, F, G) = (E AND F) XOR ((NOT E) AND G)</code><br>
+    <code>Maj(A, B, C) = (A AND B) XOR (A AND C) XOR (B AND C)</code><br>
+    <code>Σ₀(A) = (A ROTR 2) XOR (A ROTR 13) XOR (A ROTR 22)</code><br>
+    <code>Σ₁(E) = (E ROTR 6) XOR (E ROTR 11) XOR (E ROTR 25)</code><br>
+    <code>σ₀(W[i-15]) = (W[i-15] ROTR 7) XOR (W[i-15] ROTR 18) XOR (W[i-15] SHR 3)</code><br>
+    <code>σ₁(W[i-2]) = (W[i-2] ROTR 17) XOR (W[i-2] ROTR 19) XOR (W[i-2] SHR 10)</code>
+  </div>
+  <p>
+    Onde:
+  </p>
+  <ul>
+    <li><code>ROTR</code>: Rotação à direita.</li>
+    <li><code>SHR</code>: Deslocamento à direita.</li>
+    <li><code>W[i]</code>: Palavra de 32 bits derivada do bloco de mensagem.</li>
+  </ul>
+
+  <h3>4. Atualização do Buffer</h3>
+  <p>
+    Após processar todos os blocos de 512 bits, o buffer final (A, B, C, D, E, F, G, H) contém o hash SHA-256 de 256
+    bits, este buffer final é somado com as constantes iniciais (A inicial + A final, e isso se repete para todos). 
+    Esse valor é concatenado e convertido em uma representação hexadecimal de 64 caracteres.
+  </p>
+
+  <h3>Tabela de Constantes K[i]</h3>
+  <p>
+    O SHA-256 utiliza 64 constantes <code>K[i]</code>, derivadas dos primeiros 32 bits das partes fracionárias das
+    raízes cúbicas dos primeiros 64 números primos. Abaixo está a tabela completa:
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>i</th>
+        <th>K[i] (Hexadecimal)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>0</td>
+        <td>0x428A2F98</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>0x71374491</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>0xB5C0FBCF</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>0xE9B5DBA5</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>0x3956C25B</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>0x59F111F1</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>0x923F82A4</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>0xAB1C5ED5</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>0xD807AA98</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>0x12835B01</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>0x243185BE</td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td>0x550C7DC3</td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td>0x72BE5D74</td>
+      </tr>
+      <tr>
+        <td>13</td>
+        <td>0x80DEB1FE</td>
+      </tr>
+      <tr>
+        <td>14</td>
+        <td>0x9BDC06A7</td>
+      </tr>
+      <tr>
+        <td>15</td>
+        <td>0xC19BF174</td>
+      </tr>
+      <tr>
+        <td>16</td>
+        <td>0xE49B69C1</td>
+      </tr>
+      <tr>
+        <td>17</td>
+        <td>0xEFBE4786</td>
+      </tr>
+      <tr>
+        <td>18</td>
+        <td>0x0FC19DC6</td>
+      </tr>
+      <tr>
+        <td>19</td>
+        <td>0x240CA1CC</td>
+      </tr>
+      <tr>
+        <td>20</td>
+        <td>0x2DE92C6F</td>
+      </tr>
+      <tr>
+        <td>21</td>
+        <td>0x4A7484AA</td>
+      </tr>
+      <tr>
+        <td>22</td>
+        <td>0x5CB0A9DC</td>
+      </tr>
+      <tr>
+        <td>23</td>
+        <td>0x76F988DA</td>
+      </tr>
+      <tr>
+        <td>24</td>
+        <td>0x983E5152</td>
+      </tr>
+      <tr>
+        <td>25</td>
+        <td>0xA831C66D</td>
+      </tr>
+      <tr>
+        <td>26</td>
+        <td>0xB00327C8</td>
+      </tr>
+      <tr>
+        <td>27</td>
+        <td>0xBF597FC7</td>
+      </tr>
+      <tr>
+        <td>28</td>
+        <td>0xC6E00BF3</td>
+      </tr>
+      <tr>
+        <td>29</td>
+        <td>0xD5A79147</td>
+      </tr>
+      <tr>
+        <td>30</td>
+        <td>0x06CA6351</td>
+      </tr>
+      <tr>
+        <td>31</td>
+        <td>0x14292967</td>
+      </tr>
+      <tr>
+        <td>32</td>
+        <td>0x27B70A85</td>
+      </tr>
+      <tr>
+        <td>33</td>
+        <td>0x2E1B2138</td>
+      </tr>
+      <tr>
+        <td>34</td>
+        <td>0x4D2C6DFC</td>
+      </tr>
+      <tr>
+        <td>35</td>
+        <td>0x53380D13</td>
+      </tr>
+      <tr>
+        <td>36</td>
+        <td>0x650A7354</td>
+      </tr>
+      <tr>
+        <td>37</td>
+        <td>0x766A0ABB</td>
+      </tr>
+      <tr>
+        <td>38</td>
+        <td>0x81C2C92E</td>
+      </tr>
+      <tr>
+        <td>39</td>
+        <td>0x92722C85</td>
+      </tr>
+      <tr>
+        <td>40</td>
+        <td>0xA2BFE8A1</td>
+      </tr>
+      <tr>
+        <td>41</td>
+        <td>0xA81A664B</td>
+      </tr>
+      <tr>
+        <td>42</td>
+        <td>0xC24B8B70</td>
+      </tr>
+      <tr>
+        <td>43</td>
+        <td>0xC76C51A3</td>
+      </tr>
+      <tr>
+        <td>44</td>
+        <td>0xD192E819</td>
+      </tr>
+      <tr>
+        <td>45</td>
+        <td>0xD6990624</td>
+      </tr>
+      <tr>
+        <td>46</td>
+        <td>0xF40E3585</td>
+      </tr>
+      <tr>
+        <td>47</td>
+        <td>0x106AA070</td>
+      </tr>
+      <tr>
+        <td>48</td>
+        <td>0x19A4C116</td>
+      </tr>
+      <tr>
+        <td>49</td>
+        <td>0x1E376C08</td>
+      </tr>
+      <tr>
+        <td>50</td>
+        <td>0x2748774C</td>
+      </tr>
+      <tr>
+        <td>51</td>
+        <td>0x34B0BCB5</td>
+      </tr>
+      <tr>
+        <td>52</td>
+        <td>0x391C0CB3</td>
+      </tr>
+      <tr>
+        <td>53</td>
+        <td>0x4ED8AA4A</td>
+      </tr>
+      <tr>
+        <td>54</td>
+        <td>0x5B9CCA4F</td>
+      </tr>
+      <tr>
+        <td>55</td>
+        <td>0x682E6FF3</td>
+      </tr>
+      <tr>
+        <td>56</td>
+        <td>0x748F82EE</td>
+      </tr>
+      <tr>
+        <td>57</td>
+        <td>0x78A5636F</td>
+      </tr>
+      <tr>
+        <td>58</td>
+        <td>0x84C87814</td>
+      </tr>
+      <tr>
+        <td>59</td>
+        <td>0x8CC70208</td>
+      </tr>
+      <tr>
+        <td>60</td>
+        <td>0x90BEFFFA</td>
+      </tr>
+      <tr>
+        <td>61</td>
+        <td>0xA4506CEB</td>
+      </tr>
+      <tr>
+        <td>62</td>
+        <td>0xBEF9A3F7</td>
+      </tr>
+      <tr>
+        <td>63</td>
+        <td>0xC67178F2</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Vulnerabilidades do SHA-256</h2>
+  <p>
+    O SHA-256 é considerado seguro contra colisões e ataques de preimagem. No entanto, como qualquer algoritmo
+    criptográfico, sua segurança depende da implementação correta e do uso adequado. Até o momento, não há ataques
+    práticos que comprometam o SHA-256.
+  </p>
+
+  <h2>Conclusão</h2>
+  <p>
+    O SHA-256 é um dos algoritmos de hash mais seguros e amplamente utilizados atualmente. Ele é essencial em aplicações
+    como blockchain, certificados digitais e integridade de dados. Sua robustez e resistência a ataques o tornam uma
+    escolha confiável para garantir a segurança de informações.
+  </p>
+</div>

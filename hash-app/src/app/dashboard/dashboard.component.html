@@ -1,0 +1,30 @@
+<div class="dashboard">
+  <!-- Barra lateral -->
+  <div class="dashboard-nav" [class.collapsed]="isSidebarCollapsed">
+    <header>
+      <a routerLink="/hash" class="brand-logo" style="padding: 40px 0 20px 60px;">
+        <fa-icon [icon]="faHashtag"></fa-icon> <!-- Ícone de hash -->
+        <span> HASH</span>
+      </a>
+    </header>
+    <nav class="dashboard-nav-list">
+      <a routerLink="/md5" class="dashboard-nav-item btn">
+        <fa-icon [icon]="faFingerprint"></fa-icon>
+        <span> MD5</span>
+      </a>
+      <a routerLink="/sha2" class="dashboard-nav-item btn">
+        <fa-icon [icon]="faFingerprint"></fa-icon>
+        <span> SHA-2</span>
+      </a>
+      <a routerLink="/boolean" class="dashboard-nav-item btn">
+        <fa-icon [icon]="faFingerprint"></fa-icon>
+        <span>Funções Booleanas</span>
+      </a>
+    </nav>
+  </div>
+  <div class="dashboard-app">
+    <div class="dashboard-content">
+      <router-outlet></router-outlet> <!-- Exibe o conteúdo da rota atual -->
+    </div>
+  </div>
+</div>
